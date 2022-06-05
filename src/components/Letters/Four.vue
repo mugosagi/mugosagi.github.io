@@ -1,14 +1,19 @@
 <script setup>
 import Base from '@/components/Letters/Base.vue';
 import Flower from '@/components/Flower.vue';
-import { onBeforeUpdate, onMounted, onUnmounted, ref } from 'vue';
+import { onMounted, onUnmounted, ref } from 'vue';
 
 const base = ref(null);
 
 const flowerSize = ref(0);
+const flowerVerticalCount = ref(0);
 
-const updateFlowerSize = () =>
-  (flowerSize.value = (base.value?.$el?.clientWidth ?? 0) / 100);
+const updateFlowerSize = () => {
+  flowerSize.value = (base.value?.$el?.clientWidth ?? 0) / 100;
+  flowerVerticalCount.value = Math.ceil(
+    (base.value?.$el?.clientHeight ?? 0) / (flowerSize.value * 10 || 1)
+  );
+};
 
 onMounted(() => {
   updateFlowerSize();
@@ -23,7 +28,7 @@ onUnmounted(() => window.removeEventListener('resize', updateFlowerSize));
     <div class="image-container-second overflow-hidden">
       <div class="flowers" :style="`margin-top: -${flowerSize * 10}px`">
         <div
-          v-for="i in 15"
+          v-for="i in flowerVerticalCount"
           class="flex"
           :key="i"
           :style="`
