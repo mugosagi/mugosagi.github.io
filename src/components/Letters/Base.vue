@@ -50,11 +50,11 @@ defineProps({ letter: { type: String, default: '' } });
   }
 
   .underlayer {
-    @apply z-10  inline-block h-full w-full;
+    @apply z-10 inline-block h-full w-full;
   }
 
   .char {
-    @apply select-none inline-block relative -mt-16 py-16;
+    @apply select-none inline-block relative mt-4 mb-8;
     padding-left: 1.5vw;
     padding-right: 1.5vw;
     font-size: 20vw;

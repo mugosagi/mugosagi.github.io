@@ -21,12 +21,16 @@ onUnmounted(() => window.removeEventListener('resize', updateFlowerSize));
 <template>
   <Base ref="base" letter="G">
     <div class="image-container-second overflow-hidden">
-      <div class="flowers">
+      <div class="flowers" :style="`margin-top: -${flowerSize * 10}px`">
         <div
-          v-for="i in 20"
-          class="flex mb-5"
-          :class="i % 2 ? `ml-8` : `ml-15`"
-          :style="`gap: ${flowerSize * 10}px`"
+          v-for="i in 15"
+          class="flex"
+          :key="i"
+          :style="`
+            gap: ${flowerSize * 10}px; 
+            margin-bottom: ${flowerSize * 5}px; 
+            margin-left: ${i % 2 ? flowerSize * 10 : 0}px
+          `"
         >
           <Flower
             v-for="j in 10"
@@ -56,15 +60,16 @@ onUnmounted(() => window.removeEventListener('resize', updateFlowerSize));
   background-size: 1em 1em, 1.5em 1.5em;
 
   .flowers {
+    @apply relative -left-14;
     animation: rotatemask 10s ease-in-out infinite;
     animation-play-state: paused;
     @keyframes rotatemask {
       0%,
       100% {
-        transform: translate(-10%, -10%);
+        transform: rotate(-8deg);
       }
       50% {
-        transform: translate(-25%, -50%);
+        transform: rotate(8deg);
       }
     }
   }
