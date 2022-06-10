@@ -38,7 +38,7 @@ onUnmounted(() => window.removeEventListener('resize', updateFlowerSize));
           `"
         >
           <Flower
-            v-for="j in 10"
+            v-for="j in 15"
             :key="j"
             style="transform: skew(11deg)"
             class="relative"
